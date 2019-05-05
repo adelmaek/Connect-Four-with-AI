@@ -2,8 +2,6 @@ import pygame
 from boardGui import create_board_matrix
 from boardGui import draw_board
 from boardGui import create_Display
-import sys
-from pygame.locals import *
 from PLAYER_turn import PLAYER_takes_turn
 from AI_turn import AI_takes_turn
 from define import *
@@ -16,9 +14,11 @@ def main():
     draw_board(boardBackGround, board)
 
     while True:
-        board = PLAYER_takes_turn(board,boardBackGround)
-
-        # board = AI_takes_turn(board)
+        print(board)
+        board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+        if winner_flag == 1:
+            print
+        board = AI_takes_turn(board,boardBackGround)
 
 
 
