@@ -28,7 +28,6 @@ def PLAYER_takes_turn(board,boardBackground):
                 board,insertedFlag= insert_piece(board, insertionCol, PLAYER_PIECE,boardBackground)
 
     if is_Winning_situation(board,PLAYER_PIECE):
-        print("PLAYER IS WINNER")
         winner_flag = 1
     return board, winner_flag
 

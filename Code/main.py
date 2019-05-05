@@ -17,8 +17,12 @@ def main():
         print(board)
         board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
         if winner_flag == 1:
-            print
-        board = AI_takes_turn(board,boardBackGround)
+            print("PLAYER IS THE WINNER")
+            break
+        board, winner_flag = AI_takes_turn(board,boardBackGround)
+        if winner_flag == 1:
+            print("AI IS THE WINNER")
+            break
 
 
 
