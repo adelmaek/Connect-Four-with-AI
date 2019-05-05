@@ -4,8 +4,14 @@ import sys
 from pygame.locals import *
 from define import *
 
+def board_is_full(board):
+    for c in range(no_cols):
+        for r in range(no_rows):
+            if board[c][r] == 0:
+                return False
+    return True
+
 def is_Winning_situation(board,piece):
-    no_rows, no_cols = board.shape
     # horizontal
     for c in range(no_cols - 3):
         for r in range(no_rows):

@@ -1,7 +1,8 @@
 import pygame
 from boardGui import create_board_matrix
 from boardGui import draw_board
-from boardGui import create_Display
+from boardGui import create_Display, board_is_full
+
 from PLAYER_turn import PLAYER_takes_turn
 from AI_turn import AI_takes_turn
 from define import *
@@ -19,11 +20,16 @@ def main():
         if winner_flag == 1:
             print("PLAYER IS THE WINNER")
             break
+        if board_is_full(board):
+            print("Game Over with draw")
+            break
         board, winner_flag = AI_takes_turn(board,boardBackGround)
         if winner_flag == 1:
             print("AI IS THE WINNER")
             break
-
+        if board_is_full(board):
+            print("Game Over with draw")
+            break
 
 
 
