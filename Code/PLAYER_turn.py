@@ -15,14 +15,14 @@ def PLAYER_takes_turn(board,boardBackground):
                 sys.exit()
 
             if event.type == pygame.MOUSEMOTION:
-                pygame.draw.rect(boardBackground,WHITE,(0,0,SquareLength*no_cols,SquareLength))
+                pygame.draw.rect(boardBackground,BACKGROUND_COLOR,(0,0,SquareLength*no_cols,SquareLength))
                 col_pos = event.pos[0]
                 pygame.draw.circle(boardBackground,YELLOW,(col_pos,int(SquareLength/2)),PieceRadius)
                 pygame.display.update()
 
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pygame.draw.rect(boardBackground, WHITE, (0, 0, SquareLength*no_cols, SquareLength))
+                pygame.draw.rect(boardBackground, BACKGROUND_COLOR, (0, 0, SquareLength*no_cols, SquareLength))
                 clickPosition = event.pos[0]
                 insertionCol = int(math.floor(clickPosition / SquareLength))
                 board,insertedFlag= insert_piece(board, insertionCol, PLAYER_PIECE,boardBackground)

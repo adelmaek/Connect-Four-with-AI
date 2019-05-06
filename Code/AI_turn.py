@@ -1,12 +1,13 @@
 import random
 import pygame
+import math
 import sys
 from pygame.locals import *
 from boardGui import insert_piece, is_Winning_situation
 from define import *
-
-def AI_takes_turn(board,boardBackGround):
-    col = random.randint(0, 6)
+from Mini_Max_Algorithm import minimax
+def AI_takes_turn(board,boardBackGround,Level):
+    col = minimax(board, Level, True,-math.inf,math.inf)[0]
     winner_flag = 0
     isnertionFlag = 0
     while isnertionFlag ==0:
