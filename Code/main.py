@@ -9,7 +9,7 @@ from PLAYER_turn import PLAYER_takes_turn
 from AI_turn import AI_takes_turn
 from define import *
 global who_player
-who_player = ""
+who_player = "AI"
 class Window(QtGui.QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
@@ -58,15 +58,11 @@ class Window(QtGui.QMainWindow):
         frameGm.moveCenter(centerPoint)
         self.move(frameGm.topLeft())
     def AI(self):
-        print(" AI")
         global who_player
         who_player="AI"
-        print(who_player)
     def You(self):
         global who_player
-        print("you")
         who_player="you"
-        print(who_player)
     def Easy(self):
         self.initGame(EASY_LEVEL)
     def Medium(self):
@@ -118,7 +114,7 @@ class Window(QtGui.QMainWindow):
                     break
         self.show()
         QtGui.QMessageBox.warning(self, "Result", result)
-        who_player=""
+        who_player="AI"
         pygame.quit()
 
 def main():
