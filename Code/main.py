@@ -8,6 +8,8 @@ import os
 from PLAYER_turn import PLAYER_takes_turn
 from AI_turn import AI_takes_turn
 from define import *
+global who_player
+who_player = ""
 class Window(QtGui.QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
@@ -24,17 +26,26 @@ class Window(QtGui.QMainWindow):
         Medium = QtGui.QPushButton("Medium",self.vbox)
         Hard = QtGui.QPushButton("Hard",self.vbox)
         SuperHard = QtGui.QPushButton("SuperHard",self.vbox)
+        AI = QtGui.QPushButton("AI",self.vbox)
+        You= QtGui.QPushButton("You",self.vbox)
         Easy.clicked.connect(self.Easy)
         Medium.clicked.connect(self.Medium)
         Hard.clicked.connect(self.Hard)
         SuperHard.clicked.connect(self.SuperHard)
+        AI.clicked.connect(self.AI)
+        You.clicked.connect(self.You)
         l1 = QtGui.QLabel(self.vbox)
+        l2 = QtGui.QLabel(self.vbox)
+        self.verticalLayout.addWidget(l2)
+        self.verticalLayout.addWidget(AI)
+        self.verticalLayout.addWidget(You)
         self.verticalLayout.addWidget(l1)
         self.verticalLayout.addWidget(Easy)
         self.verticalLayout.addWidget(Medium)
         self.verticalLayout.addWidget(Hard)
         self.verticalLayout.addWidget(SuperHard)
         l1.setText("Choose Level Difficulty")
+        l2.setText("Choose Who play First")
 
     def mainUI(self):
         self.resize(700, 480)
@@ -46,6 +57,16 @@ class Window(QtGui.QMainWindow):
         centerPoint = QtGui.QApplication.desktop().screenGeometry(screen).center()
         frameGm.moveCenter(centerPoint)
         self.move(frameGm.topLeft())
+    def AI(self):
+        print(" AI")
+        global who_player
+        who_player="AI"
+        print(who_player)
+    def You(self):
+        global who_player
+        print("you")
+        who_player="you"
+        print(who_player)
     def Easy(self):
         self.initGame(EASY_LEVEL)
     def Medium(self):
@@ -55,30 +76,49 @@ class Window(QtGui.QMainWindow):
     def SuperHard(self):
         self.initGame(SUPERHARD_LEVEL)
     def initGame(self,Level):
+        global who_player
         self.hide()
         board = create_board_matrix(no_rows,no_cols)
         boardBackGround = create_Display(no_rows,no_cols)
         pygame.init()
         draw_board(boardBackGround, board)
-
-        while True:
-            result=""
-            board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-            if winner_flag == 1:
-                result="PLAYER IS THE WINNER"
-                break
-            if board_is_full(board):
-                result="Game Over with draw"
-                break
-            board, winner_flag = AI_takes_turn(board,boardBackGround,Level)
-            if winner_flag == 1:
-                result="AI IS THE WINNER"
-                break
-            if board_is_full(board):
-                result = "Game Over with draw"
-                break
+        if who_player=="AI":
+            while True:
+                result=""
+                board, winner_flag = AI_takes_turn(board,boardBackGround,Level)
+                if winner_flag == 1:
+                    result="AI IS THE WINNER"
+                    break
+                if board_is_full(board):
+                    result = "Game Over with draw"
+                    break
+                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                if winner_flag == 1:
+                    result="PLAYER IS THE WINNER"
+                    break
+                if board_is_full(board):
+                    result="Game Over with draw"
+                    break
+        elif who_player=="you":
+            while True:
+                result=""
+                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                if winner_flag == 1:
+                    result="PLAYER IS THE WINNER"
+                    break
+                if board_is_full(board):
+                    result="Game Over with draw"
+                    break
+                board, winner_flag = AI_takes_turn(board,boardBackGround,Level)
+                if winner_flag == 1:
+                    result="AI IS THE WINNER"
+                    break
+                if board_is_full(board):
+                    result = "Game Over with draw"
+                    break
         self.show()
         QtGui.QMessageBox.warning(self, "Result", result)
+        who_player=""
         pygame.quit()
 
 def main():
