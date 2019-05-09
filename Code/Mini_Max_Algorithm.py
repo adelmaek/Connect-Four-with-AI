@@ -137,7 +137,7 @@ def get_score(board,game_level):
         for r in range(3, no_rows):
             totalScore = totalScore+operate_on_line([board[r][c], board[r-1][c+1], board[r-2][c+2], board[r-3][c+3]], game_level)
     # center column
-    if game_level != EASY_LEVEL:
+    if game_level != EASY_LEVEL and game_level !=MEDIUM_LEVEL:
         colCenter = no_cols//2
         for r in range(3, no_rows):
             if board[r][colCenter]==AI_PIECE:

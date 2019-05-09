@@ -7,7 +7,10 @@ from boardGui import insert_piece, is_Winning_situation
 from define import *
 from Mini_Max_Algorithm import minimax
 def AI_takes_turn(board,boardBackGround,Level):
-    col = minimax(board, Level, True,-math.inf,math.inf,Level)[0]
+    if Level==2 :
+        col = minimax(board, 1, True, -math.inf, math.inf, Level)[0]
+    else :
+         col = minimax(board, Level, True,-math.inf,math.inf,Level)[0]
     winner_flag = 0
     isnertionFlag = 0
     while isnertionFlag ==0:
