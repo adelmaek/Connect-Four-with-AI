@@ -178,6 +178,8 @@ class Window(QtGui.QMainWindow):
         global game_level
         game_level=SUPERHARD_LEVEL
         self.initGame(SUPERHARD_LEVEL)
+        
+        
     def initGame(self,Level):
         global who_player
         global board
