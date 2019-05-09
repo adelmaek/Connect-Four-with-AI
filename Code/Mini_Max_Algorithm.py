@@ -142,4 +142,4 @@ def get_score(board,game_level):
         for r in range(3, no_rows):
             if board[r][colCenter]==AI_PIECE:
                 totalScore=totalScore+5
-        return totalScore
+    return totalScore
