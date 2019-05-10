@@ -19,14 +19,18 @@ class Window(QtGui.QMainWindow):
         self.vbox = QtGui.QWidget(self)
         # Buttons
         self.Buttons()
+        self.center()
         self.show()
+        self.resultmsg = QtGui.QMessageBox()
+        self.resultmsg.setIcon(QtGui.QMessageBox.Information)
+        self.resultmsg.hide()
+
     def Buttons(self):
         self.vbox.setGeometry(QtCore.QRect(50, 50, 600, 300))
         self.verticalLayout = QtGui.QVBoxLayout(self.vbox)
         Easy = QtGui.QPushButton("Easy",self.vbox)
         Medium = QtGui.QPushButton("Medium",self.vbox)
         Hard = QtGui.QPushButton("Hard",self.vbox)
-        SuperHard = QtGui.QPushButton("SuperHard",self.vbox)
         AI = QtGui.QPushButton("AI",self.vbox)
         You= QtGui.QPushButton("You",self.vbox)
         Save = QtGui.QPushButton("Save",self.vbox)
@@ -34,7 +38,6 @@ class Window(QtGui.QMainWindow):
         Easy.clicked.connect(self.Easy)
         Medium.clicked.connect(self.Medium)
         Hard.clicked.connect(self.Hard)
-        SuperHard.clicked.connect(self.SuperHard)
         AI.clicked.connect(self.AI)
         You.clicked.connect(self.You)
         Save.clicked.connect(self.Save)
@@ -49,7 +52,6 @@ class Window(QtGui.QMainWindow):
         self.verticalLayout.addWidget(Easy)
         self.verticalLayout.addWidget(Medium)
         self.verticalLayout.addWidget(Hard)
-        self.verticalLayout.addWidget(SuperHard)
         self.verticalLayout.addWidget(l3)
         self.verticalLayout.addWidget(Save)
         self.verticalLayout.addWidget(Load)
@@ -152,7 +154,9 @@ class Window(QtGui.QMainWindow):
                     result="Game Over with draw"
                     break
         self.show()
-        QtGui.QMessageBox.warning(self, "Result", result)
+        self.resultmsg.setText(result)
+        self.resultmsg.setWindowTitle("Result")
+        self.resultmsg.show()
         who_player="AI"
         pygame.quit()
 
@@ -174,10 +178,6 @@ class Window(QtGui.QMainWindow):
         global game_level
         game_level=HARD_LEVEL
         self.initGame(HARD_LEVEL)
-    def SuperHard(self):
-        global game_level
-        game_level=SUPERHARD_LEVEL
-        self.initGame(SUPERHARD_LEVEL)
         
         
     def initGame(self,Level):
@@ -223,7 +223,9 @@ class Window(QtGui.QMainWindow):
                     result = "Game Over with draw"
                     break
         self.show()
-        QtGui.QMessageBox.warning(self, "Result", result)
+        self.resultmsg.setText(result)
+        self.resultmsg.setWindowTitle("Result")
+        self.resultmsg.exec_()
         who_player="AI"
         pygame.quit()
 
