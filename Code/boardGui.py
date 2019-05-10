@@ -53,14 +53,14 @@ def create_board_matrix(no_rows,no_cols):
 def insert_piece(board, col, pieceColor,boardBackground):
     no_rows, no_cols  = board.shape
     inserted_flag = 0
-    for i in range(no_rows-1,-1,-1):
+    for i in range(0,no_rows,1):
         if board[i,col] == 0:
             board[i,col] = pieceColor
             inserted_flag = 1
-            break
-        else:
-            continue
-    draw_board(boardBackground,board)
+            if i>0 :
+                board[i-1,col] = 0
+        draw_board(boardBackground, board)
+        pygame.time.wait(50)
 
     return board, inserted_flag
 
