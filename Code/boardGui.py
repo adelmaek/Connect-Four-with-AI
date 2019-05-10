@@ -62,6 +62,8 @@ def insert_piece(board, col, pieceColor,boardBackground):
         draw_board(boardBackground, board)
         pygame.time.wait(50)
 
+        
+
     return board, inserted_flag
 
 
