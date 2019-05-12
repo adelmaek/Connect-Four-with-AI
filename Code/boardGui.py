@@ -3,8 +3,7 @@ import pygame
 import sys
 from pygame.locals import *
 from define import *
-def initialWindow():
-    pass
+
 def board_is_full(board):
     for c in range(no_cols):
         for r in range(no_rows):

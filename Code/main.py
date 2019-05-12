@@ -83,82 +83,97 @@ class Window(QtGui.QMainWindow):
         boardBackGround = create_Display(no_rows,no_cols)
         pygame.init()
         draw_board(boardBackGround, board)
+        result = ""
         if who_player=="AI" and counts[1]==counts[2]:
             while True:
-                result=""
-                board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                print(board)
-                if winner_flag == 1:
-                    result="AI IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result = "Game Over with draw"
-                    break
-                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                if winner_flag == 1:
-                    result="PLAYER IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result="Game Over with draw"
+                try :
+                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
+                    print(board)
+                    if winner_flag == 1:
+                        result="AI IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result = "Game Over with draw"
+                        break
+                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                    if winner_flag == 1:
+                        result="PLAYER IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result="Game Over with draw"
+                        break
+                except:
+                    print("save")
                     break
         elif who_player=="AI" and counts[1]>counts[2]:
             while True:
-                result=""
-                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                if winner_flag == 1:
-                    result="PLAYER IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result="Game Over with draw"
-                    break
-                board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                if winner_flag == 1:
-                    result="AI IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result = "Game Over with draw"
+                try :
+                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                    if winner_flag == 1:
+                        result="PLAYER IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result="Game Over with draw"
+                        break
+                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
+                    if winner_flag == 1:
+                        result="AI IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result = "Game Over with draw"
+                        break
+                except:
+                    print("save")
                     break
         elif who_player=="you" and counts[1]==counts[2]:
             while True:
-                result=""
-                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                if winner_flag == 1:
-                    result="PLAYER IS THE WINNER"
+                try:
+                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                    if winner_flag == 1:
+                        result="PLAYER IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result="Game Over with draw"
+                        break
+                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
+                    if winner_flag == 1:
+                        result="AI IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result = "Game Over with draw"
                     break
-                if board_is_full(board):
-                    result="Game Over with draw"
-                    break
-                board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                if winner_flag == 1:
-                    result="AI IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result = "Game Over with draw"
+                except:
+                    print("save")
                     break
         elif who_player=="you" and counts[1]<counts[2]:
             while True:
-                result=""
-                board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                print(board)
-                if winner_flag == 1:
-                    result="AI IS THE WINNER"
+                try:
+                    result=""
+                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
+                    print(board)
+                    if winner_flag == 1:
+                        result="AI IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result = "Game Over with draw"
+                        break
+                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                    if winner_flag == 1:
+                        result="PLAYER IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result="Game Over with draw"
+                        break
+                except:
+                    print("save")
                     break
-                if board_is_full(board):
-                    result = "Game Over with draw"
-                    break
-                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                if winner_flag == 1:
-                    result="PLAYER IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result="Game Over with draw"
-                    break
-        self.show()
-        self.resultmsg.setText(result)
-        self.resultmsg.setWindowTitle("Result")
-        self.resultmsg.show()
-        who_player="AI"
-        pygame.quit()
+        if result!="":
+            self.show()
+            self.resultmsg.setText(result)
+            self.resultmsg.setWindowTitle("Result")
+            self.resultmsg.show()
+            who_player="AI"
+            pygame.quit()
 
     def AI(self):
         global who_player
@@ -188,45 +203,53 @@ class Window(QtGui.QMainWindow):
         boardBackGround = create_Display(no_rows,no_cols)
         pygame.init()
         draw_board(boardBackGround, board)
+        result=""
         if who_player=="AI":
             while True:
-                result=""
-                board, winner_flag = AI_takes_turn(board,boardBackGround,Level)
-                if winner_flag == 1:
-                    result="AI IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result = "Game Over with draw"
-                    break
-                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                if winner_flag == 1:
-                    result="PLAYER IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result="Game Over with draw"
+                try:
+                    board, winner_flag = AI_takes_turn(board,boardBackGround,Level)
+                    if winner_flag == 1:
+                        result="AI IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result = "Game Over with draw"
+                        break
+                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                    if winner_flag == 1:
+                        result="PLAYER IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result="Game Over with draw"
+                        break
+                except:
+                    print("save")
                     break
         elif who_player=="you":
             while True:
-                result=""
-                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                if winner_flag == 1:
-                    result="PLAYER IS THE WINNER"
+                try:
+                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                    if winner_flag == 1:
+                        result="PLAYER IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result="Game Over with draw"
+                        break
+                    board, winner_flag = AI_takes_turn(board,boardBackGround,Level)
+                    if winner_flag == 1:
+                        result="AI IS THE WINNER"
+                        break
+                    if board_is_full(board):
+                        result = "Game Over with draw"
+                        break
+                except:
+                    print("save")
                     break
-                if board_is_full(board):
-                    result="Game Over with draw"
-                    break
-                board, winner_flag = AI_takes_turn(board,boardBackGround,Level)
-                if winner_flag == 1:
-                    result="AI IS THE WINNER"
-                    break
-                if board_is_full(board):
-                    result = "Game Over with draw"
-                    break
-        self.show()
-        self.resultmsg.setText(result)
-        self.resultmsg.setWindowTitle("Result")
-        self.resultmsg.exec_()
-        who_player="AI"
+        if result!="" :
+            self.show()
+            self.resultmsg.setText(result)
+            self.resultmsg.setWindowTitle("Result")
+            self.resultmsg.exec_()
+            who_player="AI"
         pygame.quit()
 
 def main():

@@ -72,7 +72,7 @@ def operate_on_line(line,game_level):
         elif line.count(PLAYER_PIECE)==3 and line.count(EMPTY_PLACE)==1:
             score= -50
         elif line.count(PLAYER_PIECE)==2 and line.count(EMPTY_PLACE)==2:
-            score= -30
+            score= -15
     elif game_level == MEDIUM_LEVEL:
         if line.count(AI_PIECE)==4 :
             score= 100
@@ -105,7 +105,7 @@ def operate_on_line(line,game_level):
         if line.count(AI_PIECE)==4 :
             score= 100
         elif line.count(AI_PIECE)==3 and line.count(EMPTY_PLACE)==1:
-            score = 20
+            score = 40
         elif line.count(AI_PIECE)==2 and line.count(EMPTY_PLACE)==2:
             score= 10
         #Defence score
