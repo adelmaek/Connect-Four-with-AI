@@ -103,7 +103,6 @@ class Window(QtGui.QMainWindow):
                         result="Game Over with draw"
                         break
                 except:
-                    print("save")
                     break
         elif who_player=="AI" and counts[1]>counts[2]:
             while True:
@@ -123,7 +122,6 @@ class Window(QtGui.QMainWindow):
                         result = "Game Over with draw"
                         break
                 except:
-                    print("save")
                     break
         elif who_player=="you" and counts[1]==counts[2]:
             while True:
@@ -143,7 +141,6 @@ class Window(QtGui.QMainWindow):
                         result = "Game Over with draw"
                     break
                 except:
-                    print("save")
                     break
         elif who_player=="you" and counts[1]<counts[2]:
             while True:
@@ -165,7 +162,6 @@ class Window(QtGui.QMainWindow):
                         result="Game Over with draw"
                         break
                 except:
-                    print("save")
                     break
         if result!="":
             self.show()
@@ -222,7 +218,6 @@ class Window(QtGui.QMainWindow):
                         result="Game Over with draw"
                         break
                 except:
-                    print("save")
                     break
         elif who_player=="you":
             while True:
@@ -242,7 +237,6 @@ class Window(QtGui.QMainWindow):
                         result = "Game Over with draw"
                         break
                 except:
-                    print("save")
                     break
         if result!="" :
             self.show()
