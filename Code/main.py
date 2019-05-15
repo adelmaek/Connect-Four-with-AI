@@ -182,7 +182,7 @@ class Window(QtGui.QMainWindow):
             self.show()
             self.resultmsg.setText(result)
             self.resultmsg.setWindowTitle("Result")
-            self.resultmsg.show()
+            self.resultmsg.exec_()
             who_player="AI"
             pygame.quit()
 
