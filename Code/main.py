@@ -73,12 +73,28 @@ class Window(QtGui.QMainWindow):
     def Save(self):
         global board
         global who_player
+        global game_level
+        open('connect4.txt', 'w').close()
+        open('connect4_player.txt', 'w').close()
+        f= open("connect4.txt","w+")
+        np.savetxt('connect4.txt', board,fmt='%d')
+        f.close()
+        f1=open("connect4_player.txt","w+")
+        f1.write(who_player+" ")
+        f1.write(str(game_level))
+        f1.close()
         pygame.quit()
 
     def Load(self):
         global board
         global who_player
         global game_level
+        board = np.loadtxt('connect4.txt', dtype=int)
+        f= open("connect4_player.txt","r")
+        f1=f.readline().split(" ")
+        who_player=f1[0]
+        game_level=int(f1[1])
+        f.close()
         unique, counts = np.unique(board, return_counts=True)
         boardBackGround = create_Display(no_rows,no_cols)
         pygame.init()
@@ -88,7 +104,6 @@ class Window(QtGui.QMainWindow):
             while True:
                 try :
                     board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                    print(board)
                     if winner_flag == 1:
                         result="AI IS THE WINNER"
                         break
@@ -189,8 +204,8 @@ class Window(QtGui.QMainWindow):
         global game_level
         game_level=HARD_LEVEL
         self.initGame(HARD_LEVEL)
-        
-        
+
+
     def initGame(self,Level):
         global who_player
         global board
