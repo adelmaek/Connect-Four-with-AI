@@ -94,90 +94,34 @@ class Window(QtGui.QMainWindow):
         f1=f.readline().split(" ")
         who_player=f1[0]
         game_level=int(f1[1])
+        print(who_player)
+        print(game_level)
+        if game_level == 2:
+            print("yes")
         f.close()
         unique, counts = np.unique(board, return_counts=True)
         boardBackGround = create_Display(no_rows,no_cols)
         pygame.init()
         draw_board(boardBackGround, board)
         result = ""
-        if who_player=="AI" and counts[1]==counts[2]:
-            while True:
-                try :
-                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                    if winner_flag == 1:
-                        result="AI IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result = "Game Over with draw"
-                        break
-                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                    if winner_flag == 1:
-                        result="PLAYER IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result="Game Over with draw"
-                        break
-                except:
+        while True:
+            try :
+                board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
+                if winner_flag == 1:
+                    result="PLAYER IS THE WINNER"
                     break
-        elif who_player=="AI" and counts[1]>counts[2]:
-            while True:
-                try :
-                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                    if winner_flag == 1:
-                        result="PLAYER IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result="Game Over with draw"
-                        break
-                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                    if winner_flag == 1:
-                        result="AI IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result = "Game Over with draw"
-                        break
-                except:
+                if board_is_full(board):
+                    result="Game Over with draw"
                     break
-        elif who_player=="you" and counts[1]==counts[2]:
-            while True:
-                try:
-                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                    if winner_flag == 1:
-                        result="PLAYER IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result="Game Over with draw"
-                        break
-                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                    if winner_flag == 1:
-                        result="AI IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result = "Game Over with draw"
+                board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
+                if winner_flag == 1:
+                    result="AI IS THE WINNER"
                     break
-                except:
+                if board_is_full(board):
+                    result = "Game Over with draw"
                     break
-        elif who_player=="you" and counts[1]<counts[2]:
-            while True:
-                try:
-                    result=""
-                    board, winner_flag = AI_takes_turn(board,boardBackGround,game_level)
-                    print(board)
-                    if winner_flag == 1:
-                        result="AI IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result = "Game Over with draw"
-                        break
-                    board, winner_flag= PLAYER_takes_turn(board,boardBackGround)
-                    if winner_flag == 1:
-                        result="PLAYER IS THE WINNER"
-                        break
-                    if board_is_full(board):
-                        result="Game Over with draw"
-                        break
-                except:
-                    break
+            except:
+                break        
         if result!="":
             self.show()
             self.resultmsg.setText(result)
