@@ -1,6 +1,6 @@
 # Connect-Four-with-AI
 Implementing connect four game with a 6x7 board. The game is powered by AI where the player competes with the computer.
-Using Minimax algorithm with alpha-beta pruning.
+We use Minimax algorithm with alpha-beta pruning.
 
 ## Team Members:
 - [Adel Mahmoud](https://github.com/adelmaek)
